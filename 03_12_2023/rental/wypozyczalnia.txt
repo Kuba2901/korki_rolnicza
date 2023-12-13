@@ -1,0 +1,25 @@
+Class Car
+1. Brand
+2. Year
+3. Color
+4. Available
+
+Class CarRental
+# lista samochodow
+1. cars
+2. file_name
+
+# functions
+1. get_cars <- wczytuje liste samochodow z pliku i zwraca ją
+2. add_car <- dodaje nowy samochod
+3. remove_car(id) <- usuwa samochod o podanym ID jesli istnieje
+4. view_car(id)
+
+# Usuwanie
+1. Przechodzimy po wszystkich samochodach w liscie cars
+2. Jesli znajdziemy wlasciwe ID, to usuwamy z listy, wrzucamy wszystko do pliku i zwracamy True
+3. Jesli nie znalezlismy, to zwracamy False
+
+
+# wypozyczanie
+toggleAvailability()

@@ -1,0 +1,11 @@
+{
+  "654321": {
+    "id": 654321,
+    "title": "nowy tytul",
+    "content": {
+      "content": "nowy content"
+    },
+    "author": "new author",
+    "created_at": "20:21"
+  }
+}
