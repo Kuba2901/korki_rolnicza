@@ -1,0 +1,16 @@
+{
+  "1": {
+    "id": "1",
+    "title": "t1",
+    "author": "a1",
+    "publish_date": "p1",
+    "available": true
+  },
+  "2": {
+    "id": "2",
+    "title": "t2",
+    "author": "a2",
+    "publish_date": "p2",
+    "available": true
+  }
+}

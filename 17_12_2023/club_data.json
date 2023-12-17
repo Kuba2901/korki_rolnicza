@@ -1,0 +1,12 @@
+{
+  "captain_id": 1,
+  "players": {
+    "1": {
+      "id": 1,
+      "first_name": "jakub",
+      "last_name": "nenczak",
+      "date_of_birth": "29.01.2003",
+      "first_team_player": true
+    }
+  }
+}
