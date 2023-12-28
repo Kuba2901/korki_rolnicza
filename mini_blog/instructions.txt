@@ -1,0 +1,5 @@
+1. Remember to add the python-dotenv package and set the .flaskenv value
+
+
+Na czym skończyłem: 
+https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
