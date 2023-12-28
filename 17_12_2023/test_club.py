@@ -30,6 +30,10 @@ class TestPlayer(unittest.TestCase):
 		player = Player()
 		player.from_json(data)
 		
+		self.assertEqual(player.first_name, player_expected.first_name)
+		self.assertEqual(player.last_name, player_expected.last_name)
+		self.assertEqual(player.date_of_birth, player_expected.date_of_birth)
+		self.assertEqual(player.first_team_player, player_expected.first_team_player)
 		self.assertEqual(player, player_expected)
 
 class TestClub(unittest.TestCase):
@@ -39,28 +43,44 @@ class TestClub(unittest.TestCase):
 		except:
 			pass
 
-	def test_view_player(self):
-			with patch.object(Club, 'get_players', return_value=[Player(1, "jakub", "nenczak", "29.01.2003", True)]):
-				expected = {
-					"id": 1,
-					"first_name": "jakub",
-					"last_name": 'nenczak',
-					"date_of_birth": "29.01.2003",
-					"first_team_player": True
-				}
+	# def test_view_player(self):
+	# 		with patch.object(Club, 'get_players', return_value=[Player(1, "jakub", "nenczak", "29.01.2003", True)]):
+	# 			expected = {
+	# 				"id": 1,
+	# 				"first_name": "jakub",
+	# 				"last_name": 'nenczak',
+	# 				"date_of_birth": "29.01.2003",
+	# 				"first_team_player": True
+	# 			}
 
-				club_instance = Club("test_file.json")
-				players = club_instance.players
-				ret = club_instance.view_player(1)
-				self.assertEqual(ret, expected)
+	# 			club_instance = Club("test_file.json")
+	# 			players = club_instance.players
+	# 			ret = club_instance.view_player(1)
+	# 			self.assertEqual(ret, expected)
 
 
-	def test_view_player_none(self):
-		with patch.object(Club, 'get_players', return_value=[]):
-				club_instance = Club("test_file.json")
-				players = club_instance.players
-				ret = club_instance.view_player(1)
-				self.assertEqual(ret, None)
+	@patch("club.Club.get_players")
+	def test_view_player(self, mocked_get_player):
+		mocked_get_player.return_value = [Player(1, "marcelina", "gorka", "29.08.2007", True)]
+		expected = {
+			"id": 1,
+			"first_name": "marcelina",
+			"last_name": "gorka",
+			"date_of_birth": "29.08.2007",
+			"first_team_player": True
+		} 
+		club_instance = Club("test_file.json")
+		players = club_instance.players
+		ret = club_instance.view_player(1)
+		self.assertEqual(ret, expected)
+
+	@patch("club.Club.get_players")
+	def test_view_player_none(self, mocked_get_players):
+		club_instance = Club("test_file.json")
+		mocked_get_players.return_value = []
+		players = club_instance.players
+		ret = club_instance.view_player(1)
+		self.assertEqual(ret, None)
 
 	
 	def test_player_promoted(self):
@@ -76,6 +96,13 @@ class TestClub(unittest.TestCase):
 				players = club_instance.players
 				ret = club_instance.promote_demote_player(1)
 				self.assertFalse(ret)
+
+	def test_player_promoted_demoted_none(self):
+		with patch.object(Club, 'get_players', return_value=[]):
+				club_instance = Club("test_file.json")
+				players = club_instance.players
+				ret = club_instance.promote_demote_player(1)
+				self.assertIsNone(ret)
 
 	def test_captain_uncaptain_player_changed(self):
 		with patch.object(Club, 'get_players', return_value=[Player(1, "jakub", "nenczak", "29.01.2003", True)]):

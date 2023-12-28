@@ -39,7 +39,7 @@ class Player:
 	# Args: other: Club
 	# Returns: bool
 	def __eq__(self, other) -> bool:
-		if self.id == other.id and self.first_name == other.first_name and self.last_name == other.last_name and self.date_of_birth == other.date_of_birth and self.first_team_player == other.first_team_player:
+		if self.first_name == other.first_name and self.last_name == other.last_name and self.date_of_birth == other.date_of_birth and self.first_team_player == other.first_team_player:
 			return (True)
 		else:
 			return (False)
@@ -77,22 +77,20 @@ class Club:
 		players_list = []
 
 		# 3b. (new) get the players data
-		players_data = data.get("players") # ["players"]
+		# players_data = data.get("players")
 
 		# 3c. (new) get the team_captain id
-		captain_data = data.get("captain_id")
+		# captain_data = data.get("captain_id")
 		
-		if captain_data is not None:
-			self.captain_id = int(captain_data)
+		# if captain_data is not None:
+		# 	self.captain_id = int(captain_data)
 		
-		if players_data is not None:
-			# 4. Iterate over the values in the dictionary
-			for v in players_data.values():
-				player = Player()
-				player.from_json(v)
+		for v in data.values():
+			player = Player()
+			player.from_json(v)
 
-				# Append the car to the list
-				players_list.append(player)
+			# Append the car to the list
+			players_list.append(player)
 
 		file.close()
 		return (players_list)
@@ -110,14 +108,12 @@ class Club:
 	# Args: None
 	# Returns: None
 	def dump_to_file(self) -> None:
-		data = {
-			"captain_id": self.captain_id,
-			"players": {}
-		}
+		data = {}
+
 		for player in self.players:
 			player_id = str(player.id)
 			player_json = player.to_json()
-			data["players"][player_id] = player_json
+			data[player_id] = player_json
 
 		with open(self.file_name, "w") as file:
 			json.dump(data, file, indent=2)
@@ -171,3 +167,14 @@ class Club:
 			if player.id == id:
 				return (player.to_json())
 		return (None)
+
+	def print_123(self) -> str:
+		ret = ""
+		for i in range(3):
+			ret += f"{i + 1}\n"
+		return (ret)
+
+	def print_hello(self) -> str:
+		return "hello" + f" {self.print_123()}"
+
+	

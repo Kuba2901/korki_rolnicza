@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Działania matematyczne</title>
+	<link rel="stylesheet" href="styl.css">
+</head>
+
+<body>
+	<div class="baner1">
+		<img src="logo.jpg" alt="matematyka">
+	</div>
+	<div class="baner2">
+		<h1>Pomocnik Matematyczny</h1>
+	</div>
+	<div class="baner3">
+		<h4><a href="dzialania.html">Działania</a></h4>
+	</div>
+	<div class="baner4">
+		<h4><a href="mnozenie.html">Tabliczka mnożenia</a></h4>
+	</div>
+	<div class="lewy">
+		<h3>Proste działania</h3>
+		<label for="a">Liczba A: </label>
+		<input type="number" id="a"><br>
+		<label for="b">Liczba B: </label>
+		<input type="number" id="b"><br>
+
+		<button onclick="dodawanie()">+</button>
+		<button onclick="odejmowanie()">-</button>
+		<button onclick="mnożenie()">*</button>
+		<button onclick="dzielenie()">/</button>
+		<button onclick="potęgowanie()">A^B</button>
+		<p id="p"></p>
+	</div>
+	<div class="prawy">
+		<ul>
+			<li>dodawanie</li>
+			<li>odejmowanie</li>
+			<li>mnożenie</li>
+			<li>dzielenie</li>
+			<li>potęgowanie</li>
+		</ul>
+	</div>
+	<div class="stopka">
+		<p>Autor: 00000000000</p>
+	</div>
+
+	<script>
+		function dodawanie() {
+			const a = parseInt(document.getElementById('a').value);
+			const b = parseInt(document.getElementById('b').value);
+			const wynik = document.getElementById('p')
+
+			let dzialanie = a + b
+			wynik.innerHTML = "Wynik: " + dzialanie
+		}
+
+		function odejmowanie() {
+			const a = parseInt(document.getElementById('a').value);
+			const b = parseInt(document.getElementById('b').value);
+			const wynik = document.getElementById('p')
+
+			let dzialanie = a - b
+			wynik.innerHTML = "Wynik: " + dzialanie
+		}
+
+		function mnożenie() {
+			const a = parseInt(document.getElementById('a').value);
+			const b = parseInt(document.getElementById('b').value);
+			const wynik = document.getElementById('p')
+
+			let dzialanie = a * b
+			wynik.innerHTML = "Wynik: " + dzialanie
+		}
+
+
+		function dzielenie() {
+			const a = parseInt(document.getElementById('a').value);
+			const b = parseInt(document.getElementById('b').value);
+			const wynik = document.getElementById('p')
+
+			let dzialanie = a / b
+			wynik.innerHTML = "Wynik: " + dzialanie
+		}
+
+		function potęgowanie() {
+			const a = parseInt(document.getElementById('a').value);
+			const b = parseInt(document.getElementById('b').value);
+			const wynik = document.getElementById('p')
+
+			let dzialanie = a ** b
+			wynik.innerHTML = "Wynik: " + dzialanie
+		}
+
+	</script>
+</body>
+
+</html>
